@@ -1,0 +1,76 @@
+<HTML> 
+<HEAD>   <TITLE> ++ 자. 바. 스. 크. 립. 트 ++ </TITLE> </HEAD>
+
+<BODY>
+<CENTER>
+	<table border="0" cellpadding="3" bgcolor=#000000 width=300>
+		<tr height=300>
+			<td align="center">
+				<!---- 맨처음 보여줄 이미지 설정  ---->
+				<img src="images/0.jpg" name="gallery">
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<form name="menu">
+					<script>
+
+                                         //갤러리 사이즈 = 사진의 개수
+                                        size = 10;
+
+                                        //현재 그림 번호: 주어진 코드 템플릿의 이미지태그 속성의 0으로 초기화
+                                        which = 1;
+
+                                        //방향을 가리킬 상수
+                                        back = -1;
+                                        front = 1;
+
+                                        //움직일 방향을 매개변수로 받아 움직인 후의 그림번호를 출력한다.
+                                        function move(direction) {
+                                                //처음으로 버튼을 눌렀을 때 첫번째 사진번호로 업데이트
+                                                if(which == 0){
+                                                        which = 1;
+                                                        return;
+                                                }
+
+                                                //방향이 왼쪽이면 기존 그림번호에 -1, 오른쪽이면 +1
+                                                which += direction;
+
+                                                //그림번호가 -1이면 마지막 사진번호로, 갤러리 크기를 초과할 경우, 0으로 업데이트
+                                                which = ((which-1) + size) % size + 1;
+                                                return;
+                                        }
+
+                                        function backward() {
+                                                //그림번호를 업데이트
+                                                move(back);
+
+
+                                                //업데이트된 그림번호에 맞는 그림을 갤러리에 출력                  
+                                                document.getElementsByName("gallery")[0].setAttribute("src","images/"+(which-1)+".jpg");
+
+                                        }
+
+
+                                        function forward() {
+                                                //그림번호를 업데이트
+                                                move(front);
+
+
+                                                //업데이트된 그림번호에 맞는 그림을 갤러리에 출력                  
+                                                document.getElementsByName("gallery")[0].setAttribute("src","images/"+(which-1)+".jpg");
+
+                                        }
+
+					</script>
+
+					<input type="button" value="<<뒤로" onClick="backward()" /> 
+					<input type="button" value="처음" onClick="which=0;backward()" />
+					<input type="button" value="앞으로>>"  onClick="forward()" />
+				</form>
+			</td>
+		</tr>
+	</table>
+</CENTER>  
+</BODY> 
+</HTML>
